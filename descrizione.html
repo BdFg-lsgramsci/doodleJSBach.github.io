@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Johann Sebastian Bach</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        *
+        {
+            color: #e6e2dc;
+        }
+
+        @font-face 
+        {
+        font-family: 'headerFont';
+        src: url('Fonts/AlteSchwabacher.ttf') format('truetype');
+        }
+
+        body {
+            background-color: #040303;
+            /*background-image: url('Media/sfondo2.jpg');*/
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header
+        {
+            font-family: 'headerFont', sans-serif;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            height: 30vh;
+            background-image: url('Media/spartito.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        header img
+        {
+            width: auto;
+            height: 75%;
+            z-index: 1;
+        }
+
+        header h1
+        {
+            z-index: 2;
+            /*-webkit-text-stroke: 0.15vw black;*/
+            color: #fff;
+            font-size: 8vw;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        header img, header h1 {
+            position: absolute;
+        }
+
+        #descrizione
+        {
+            font-size: 115%;
+        }
+
+        #descrizione embed
+        {
+            width: 50%;
+            height: auto;
+        }
+
+        #descrizione b
+        {
+            font-size: 130%;
+        }
+
+        #descrizione a
+        {
+            color: #5B8FB9;
+        }
+
+        .container {
+            background-color: #111111;
+            border: solid black 1px;
+            border-radius: 20px 20px 20px 20px;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .bio {
+            text-align: center;
+        }
+
+        .nome {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .sottotitolo-centrale {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .immagini-bio
+        {
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        /*.immagini-bio img
+        {
+            margin-left: 14%;
+            margin-right: 14%;
+        }*/
+
+        .centrale
+        {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .laterale
+        {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1>Johann Sebastian Bach</h1>
+    </header>
+
+    
+	<div class="container">
+		<div class="bio">
+			<h1 class="nome">Johann Sebastian Bach</h1>
+			<h2 class="sottotitolo-centrale">Biografia</h2>
+            <div class="immagini-bio">
+                <div style="width:40%">
+                    <p class="sottotitolo-laterale" style="margin: 0; text-align: center;">Opere</p>
+                    <img class="laterale opere" src="Media/opere.jpg" alt="">
+                </div>
+                <img class="centrale bach" src="Media/jsbach.jpg" alt="">
+                <div style="width:40%">
+                    <p class="sottotitolo-laterale" style="margin: 0; text-align: center;">Stile compositivo</p>
+                    <img class="laterale stileCompositivo" src="Media/stileCompositivo.jpg" alt="">
+                </div>
+            </div>
+			<p id="descrizione"></p>
+            <b><a style="color: #03C988;" href="index.html"><p style="color: #03C988; font-size: 135%;">Torna alla homepage</p></a></b>
+		</div>
+	</div>
+
+    <script>
+        const descrizione = document.getElementById("descrizione");
+
+        function scrollHandler() 
+        {
+            var element = document.getElementById('header');
+
+            var distanceToTop = window.pageYOffset + element.getBoundingClientRect().top;
+            var elementHeight = element.offsetHeight;
+            var scrollTop = document.documentElement.scrollTop;
+            
+            var opacity = 1;
+            
+            if (scrollTop > distanceToTop) {
+                opacity = 1 - (scrollTop - distanceToTop) / elementHeight;
+            }
+            
+            if (opacity >= 0) {
+                element.style.opacity = opacity;
+            }
+        }
+
+        window.addEventListener('scroll', scrollHandler);
+
+        const descrizioneBach = 
+        `
+        Ultimo degli otto figli di Johann Ambrosius Bach ed ed Elisabeth Lämmerhirt, Johann Sebastian Bach nasce il sabato 31 marzo 1685 a Eisenach, in Germania, in una famiglia di celebre tradizione musicale.<br><br>
+        Bach apprese le prime nozioni musicali dal padre, violinista, che gli avrebbe insegnato a suonare il violino o la viola, e voltando le pagine degli spartiti mentre il cugino Johann Christoph suonava l'organo.<br><br>
+        Successivamente frequenterà la scuola di latino per un paio d'anni (1693-1695), ma alla morte della madre e, a otto mesi di distanza, del padre, il giovanissimo Johann Sebastian si trasferirà a Ohrdruf, dal fratello maggiore Johann Christoph. Organista come l'omonimo cugino, gli impartirà ulteriori lezioni di organo e di clavicembalo.<br><br>
+        Nel 1700, a 15 anni, si reca a <a href="https://it.wikipedia.org/wiki/Luneburgo">Luneburg</a>, entrando a far parte del coro dei ragazzi poveri della Michaeliskirche (chiesa di San Michele). Qui si dedicherà allo studio della musica del XVI secolo e del XVII secolo nella biblioteca locale e avrà modo di conoscere <a href="https://it.wikipedia.org/wiki/Georg_B%C3%B6hm">Georg Böhm</a>, un importante organista e compositore del periodo.<br><br>
+        Bach fu per un breve periodo violinista presso la corte di Sassonia-Weimar e successivamente, nel 1703, divenne organista titolare della chiesa di San Bonifacio ad Arnstadt, acquistando una discreta fama a livello locale.<br><br>
+        Nel 1705, percorse 400km a piedi per recarsi a Lubecca, dal famoso, e ancora oggi riconosciuto, organista <a href"https://it.wikipedia.org/wiki/Dietrich_Buxtehude">Dietrich Buxtehude</a>, di cui Sebastian aveva sentito parlare e cheammirava particolarmente per le sue composizioni. Bach inoltre, ebbe il desiderio di sostituire il Maestro nello stesso organo, desiderio che però non diventò mai realtà.<br><br>
+        Egli trovò, tuttavia, una sistemazione da organista nella chiesa di S. Biagio a Muhlhausen, dove successivamente rimarrà a vivere con la cugina Maria Barbara. Qui comporrà un gran numero di pezzi per organo e le prime <a href="https://it.wikipedia.org/wiki/Cantate_di_Johann_Sebastian_Bach">Cantate</a> a noi oggi pervenute.<br><br>
+        A causa del suo carattere difficile e intransigente e di alcune liti con i superiori , il giovane musicista fu indotto alle dimissioni e fu trasferito presso la corte di Sassonia-Weimar come organista e violinista. Le opere composte a Weimar sono particolarmente apprezzate dal duca, e avrà modo di studiare le musiche italiane del periodo, trascrivendone manoscritti di autori quali l'ammirato Vivaldi e Frescobaldi, che era considerato uno dei massimi esponenti dell'arte del clavicembalo e delle tastiere in generale.<br><br>
+        Se egli ebbe inizialmente poco successo con le composizioni, grazie ai concerti che tenne tra il 1713 e il 1717 acquistò invece una grande fama come organista.<br><br>
+        Nel 1717 abbandonò l'incarico a Weimar e assunse la carica di Kappellmeister (maestro di cappella) alla corte del principe Leopoldo di Anhalt-Cothen, a Kothen, che essendo di confessione calvinista era ostile alla musica nel culto, e concesse a Bach di dedicarsi alla musica strumentale. In questo periodo nascono alcune delle composizioni più celebri al giorno d'oggi, tra cui i <a href="https://it.wikipedia.org/wiki/Concerti_brandeburghesi">6 concerti brandeburghesi</a>, le <a href="https://www.jsbach.it/parole/suite">suite</a> e le sonate per strumenti soli, ma soprattutto il primo libro del <a href"https://it.wikipedia.org/wiki/Il_clavicembalo_ben_temperato">"clavicembalo ben temperato"</a>, ad oggi riconosciuta una delle opere più iconiche del compositore.<br><br>
+        Nel 1723 Bach abbandona Kothen e accetta l'incarico di Kantor nella chiesa di San Tommaso, a Lipsia, dove comporrà un gran numero di cantate sacre tra cui le Passioni.<br><br>
+        Tra il 1729 e il 1740 assume il ruolo di direttore del Collegium Musicum universitario per il quale compone diverse cantate profane e musica strumentale di svariati tipi.<br><br>
+        A partire dal 1749 il compositore inizia a mostrare segni di malessere: la vista è sempre più offuscata e l'interventi di un oculista inglese di passaggio per Lipsia sembrano essere inefficaci. Il 28 luglio 1750, in uno stato di cecità assoluta Bach muore lasciando incompiuta l'ultima, e una delle sue più alte opere, l' <a href="https://it.wikipedia.org/wiki/L%27arte_della_fuga">"Arte della fuga"</a>.<br><br>
+        `;
+
+        const descrizioneOpere = 
+        `
+        Alcune delle opere più famose di Johann Sebastian Bach.<br><br>
+        Nota: "BWV" è abbreviativo per "Bach-Werke-Verzeichnis", cioè il catalogo delle opere di Bach.<br>
+        Esso è un sistema di catalogazione censito dal musicologo Wolfgang Schmieder, diventato ormai un sistema universale e standard per la numerazione delle opere di Bach.<br><br>
+        <br><br>
+        <a href="https://it.wikipedia.org/wiki/Concerti_brandeburghesi">6 Concerti brandeburghesi BWV 1056-1051 (1717-1723)</a><br><br>
+        <embed src="https://www.youtube.com/embed/HTm2kEAfo8o" type=""><br><br>
+        <a href"https://it.wikipedia.org/wiki/Il_clavicembalo_ben_temperato">Clavicembalo ben temperato libro 1 BWV 846-869 (1722) e libro 2 BWV 870-893 (1744)</a><br><br>
+        <embed src="https://www.youtube.com/embed/-fiTTjIFR30" type=""><br><br>
+        <a href="https://it.wikipedia.org/wiki/Messa_in_Si_minore">Messa in si minore BWV 232 (1729-1749)</a><br><br>
+        <embed src="https://www.youtube.com/embed/F9ZS5WltoYM" type=""><br><br>
+        <a href="https://it.wikipedia.org/wiki/Sei_suites_per_violoncello_solo">Sei suites per violoncello solo BWV 1007-1011 (1717-1723)</a><br><br>
+        <embed src="https://www.youtube.com/embed/mGQLXRTl3Z0" type=""><br><br>
+        <a href="https://it.wikipedia.org/wiki/Toccata_e_fuga_in_Re_minore">Toccata e fuga in re minore BWV 565 (1702-1703)</a><br><br>
+        <embed src="https://www.youtube.com/embed/jTN6ibiJ9bA" type=""><br><br>
+        <a href="https://it.wikipedia.org/wiki/L%27arte_della_fuga">L'arte della fuga BWV 1080 (1740-1750)</a><br><br>
+        <embed src="https://www.youtube.com/embed/Y9OUfBDIGhw" type=""><br><br>
+        `;
+
+        const descrizioneStileCompositivo = 
+        ` 
+        Bach è stato uno dei più grandi compositori della storia della musica, noto soprattutto per la sua produzione musicale barocca per organo, clavicembalo, orchestra e coro.<br>
+        Lo stile compositivo di Bach si distingue per diversi aspetti dagli altri compositori, del periodo e non.<br><br>
+
+        <b>Contrappunto</b><br>
+
+        Il contrappunto è un'arte compositiva che si occupa di scrivere più melodie indipendenti che si intrecciano tra loro in modo armonioso. In pratica, consiste nell'elaborare più temi musicali in modo tale che ciascun tema possa essere eseguito contemporaneamente senza generare dissonanze o conflitti armonici.
+        In particolare, Bach ha sviluppato e perfezionato nel corso degli anni tecniche di scrittura molto complesse come la fuga, il canone, la ricerca e la partitura.<br><br>
+
+        <b>Armonia</b><br>
+
+        Il suo stile armonico è noto per l'uso di progressioni armoniche complesse e sorprendenti<br><br>
+
+        <b>Forma</b><br>
+        Bach era molto attento alla forma musicale. Le sue opere sono quasi sempre suddivise in sezioni ben definite, come  le suite, le sonate, le partite, le cantate e le messe.<br><br>
+
+        <b>Tecnica</b><br>
+        Le sue composizioni sono spesso caratterizzate da un'ampia padronanza della tecnica.
+        Tra le più complesse e rigorose possiamo trovare la fuga, una forma musicale contrappuntistica in cui un tema principale (il soggetto) viene esposto più volte, ogni volta con un tipo di espressione e contrappuntistica diversi, venendo ripreso con un'imitazione del soggetto stesso (risposta). Sono presenti anche elementi come il controsoggetto, ovvero un tema nuovo che accompagna il soggetto e la risposta durante lo sviluppo della fuga, e la coda, che è la parte conclusiva.
+        Altre forme musicali che richiedono grande tecnica e genio, di cui Bach fu esperto, possono essere il canone (un'altra forma contrappuntistica) e la sinfonia.<br><br>
+        <b>Espressività</b><br>
+        Nonostante la sua attenzione alla forma e alla tecnica, Bach era capace di creare atmosfere e sentimenti molto intensi grazie alla varietà di colori e di timbri, che creano un senso di tensione e risoluzione.<br><br>
+        `;
+
+        descrizione.innerHTML = descrizioneBach;
+
+        function updateDescrizione(option, side) 
+        {
+            const bach = document.querySelector(".bach");
+            const opere = document.querySelector(".opere");
+            const stileCompositivo = document.querySelector(".stileCompositivo");
+            const laterali = document.querySelectorAll(".laterale");
+            const centrale = document.querySelector(".centrale");
+            const sottotitoliLaterali = document.querySelectorAll(".sottotitolo-laterale");
+            const sottotitoloCentrale = document.querySelector(".sottotitolo-centrale");
+            bach.className.split(' ')[1];
+
+            if(side != null)
+            {
+                laterali[side].src = centrale.src;
+                laterali[side].className = laterali[side].className.replace(laterali[side].className.split(' ')[1], centrale.className.split(' ')[1]);
+                sottotitoliLaterali[side].innerHTML = sottotitoloCentrale.innerText;
+            }
+
+            if(option == "bach")
+            {
+                descrizione.innerHTML = descrizioneBach;
+                centrale.src = `Media/jsbach.jpg`;
+                centrale.className = centrale.className.replace(centrale.className.split(' ')[1], "bach");
+                sottotitoloCentrale.innerText = `Biografia`;
+            }
+            else if (option == "opere")
+            {
+                descrizione.innerHTML = descrizioneOpere;
+                centrale.src = `Media/opere.jpg`;
+                centrale.className = centrale.className.replace(centrale.className.split(' ')[1], "opere");
+                sottotitoloCentrale.innerText = `Opere`;
+                const embed = document.querySelectorAll("#descrizione embed");
+                const descrizioneElement = document.querySelector("#descrizione");
+                for(let i=0; i<embed.length; i++)
+                {
+                    embed[i].style.marginLeft ="calc(" + (descrizioneElement.offsetWidth/2) + "px - 25%)";
+                }
+            }
+            else if(option == "stileCompositivo")
+            {
+                descrizione.innerHTML = descrizioneStileCompositivo;
+                centrale.src = `Media/stileCompositivo.jpg`;
+                centrale.className = centrale.className.replace(centrale.className.split(' ')[1], "stileCompositivo");
+                sottotitoloCentrale.innerText = `Stile compositivo`;
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const bach = document.querySelector(".bach");
+            const opere = document.querySelector(".opere");
+            const stileCompositivo = document.querySelector(".stileCompositivo");
+            const laterali = document.querySelectorAll(".laterale");
+            let passedOption = "none";
+            let passedSide = null;
+
+            for(let i=0; i<2; i++)
+            {
+                if(event.target === laterali[i])
+                {
+                    passedSide = i;
+                }
+            }
+
+            if (event.target === bach) 
+            {
+                passedOption = "bach";
+            }
+            else if (event.target === opere) 
+            {
+                passedOption = "opere";
+            }
+            else if (event.target === stileCompositivo) 
+            {
+                passedOption = "stileCompositivo";
+            }
+
+            updateDescrizione(passedOption, passedSide);
+        });
+    </script>
+</body>
+</html>
